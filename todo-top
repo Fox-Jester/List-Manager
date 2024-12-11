@@ -1,0 +1,5 @@
+<div class="todo-top">
+  <input type="text" name="" id="" class="name-bar" />
+  <i class="fa-solid fa-droplet fa-border recolor icon"></i>
+  <i class="fa-solid fa-x fa-border x-btn icon"></i>
+</div>

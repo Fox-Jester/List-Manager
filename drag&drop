@@ -1,0 +1,28 @@
+const chatIcon = document.querySelector('.chaticon');
+
+dragElement(chatIcon);
+
+
+function dragElement(element) {
+    element.addEventListener('mousedown', mouseDown)
+
+    function mouseDown(e) {
+        e.preventDefault()
+        element.style.color="blue"
+        document.addEventListener('mousemove', mouseMove)
+        document.addEventListener('mouseup', mouseUp)
+    }
+    function mouseMove(e) {
+        e.preventDefault()
+        element.style.left = e.clientX+'px'
+        element.style.top = e.clientY+'px'
+    }
+
+    function mouseUp() {
+        element.style.color='black'
+        document.removeEventListener('mousemove', mouseMove)
+        document.removeEventListener('mouseup', mouseUp)
+
+
+    }
+}
