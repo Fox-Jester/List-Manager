@@ -340,6 +340,7 @@ html {
 
 body {
     overflow-y: auto;
+   
 }
 
 /* container */
@@ -490,10 +491,10 @@ body {
 
 }
 
-@media screen and (max-width: 1010px) {
-    #site-name {
-        
-        background-color: crimson;
+@media screen and (max-width: 1010px) and (max-height: 690px) {
+    #world-container {
+        max-height: 690px;
+        overflow-y: auto;
     }
     
 }
@@ -574,6 +575,7 @@ body {
 }
 
 .name-bar {
+    text-align: center;
     height: 6rem;
     outline: 0;
     font-size: 3rem;
@@ -587,20 +589,7 @@ body {
     box-shadow: 0 0 5px black;
 }
 
-.entered-name {
-    flex-grow: 1;
-    width: 40rem;
-    height: 6rem;
-    padding: 0.8rem;
-    
-    border-radius: 40px;
-    border: 2px, solid, black;
-    background-color: white;
-    text-align: center;
-    font-weight: 400;
-    font-size: 3rem;
-    
-}
+
 
 .icon {
     font-size: 4rem;
@@ -621,12 +610,7 @@ body {
         font-size: 2.2rem;
         padding: 1.4rem;
     }
-    .entered-name{
-        width: 35rem;
-        height: 5rem;
-        font-size: 2.2rem;
-        padding: 0.6rem;
-    }
+
     .icon {
         font-size: 3.3rem;
     }
@@ -641,12 +625,7 @@ body {
         font-size: 2rem;
         padding: 1.2rem;
     }
-    .entered-name{
-        
-        padding: 0.8rem;
-        font-size: 2rem;
-        
-    }
+ 
     .icon {
         font-size: 3.3rem;
     }
@@ -658,9 +637,7 @@ body {
     .todo-list {
         margin-top: 2rem;
     }
-    .entered-name{
-        width: 30rem;
-    }
+   
 }
 
 
@@ -671,12 +648,7 @@ body {
         height: 4.5rem;
         padding: 1rem;
     }
-    .entered-name{
-        width: 28rem;
-        height: 4.5rem;
-        font-size: 1.8rem;
-        
-    }
+   
     .icon {
         font-size: 2.6rem;
     }
@@ -691,12 +663,7 @@ body {
         height: 5.5rem;
         padding: 1rem;
     }
-    .entered-name{
-        width: 28rem;
-        height: 5.5rem;
-        font-size: 2.4rem;
-        
-    }
+   
     .icon {
         font-size: 3rem;
     }
@@ -713,14 +680,9 @@ body {
         height: 3.5rem;
        
     }
-    .entered-name{
-        width: 24rem;
-        height: 3.5rem;
-        font-size: 1.8rem;
-        
-    }
+
     .icon {
-        font-size: 1.8rem;
+        font-size: 1.4rem;
     }
     #container {
         width: 100%;
@@ -748,6 +710,7 @@ body {
     font-size: 2.4rem;
     padding: 1rem;
     width: 40rem;
+    
 
 }
 
@@ -826,6 +789,8 @@ body {
     .input-bar {
         width: 38rem;
         font-size: 2.3rem;
+        padding-top: 1.4rem;
+        padding-left: 1.5rem;
         height: 4rem;
     }
     .add-btn {
@@ -843,9 +808,11 @@ body {
     }
     .input-bar {
         width: 23rem;
-        font-size: 1.2rem;
+        font-size: 1.4rem;
         height: 3rem;
-        padding: 1.5rem;
+        padding: 0;
+        padding-left: 1.5rem;
+        padding-top: 0.3rem;
 
     }
     .add-btn {
@@ -866,6 +833,7 @@ body {
     overflow-y: auto;
     max-height: 68rem;
     font-size: 2.4rem;
+   align-items: center;
 }
 
 .list-container::-webkit-scrollbar-track {
@@ -876,6 +844,7 @@ body {
 ul li {
     list-style: none;
     padding: 1rem;
+    padding-top: 1.3rem;
     margin: 0.5rem;
     margin-bottom: 1rem;
     
@@ -1530,10 +1499,10 @@ ul li.checked::before{
     background: var(--yellow-container);
 }
 .list-container.purple::-webkit-scrollbar-thumb{
-    background: var(--purple-container);
+    background: var(--purple-tag);
 }
 .list-container.pink::-webkit-scrollbar-thumb{
-    background: var(--pink-container);
+    background: var(--pink-tag);
 }
 
 
@@ -1664,9 +1633,54 @@ ul li.checked::before{
 .purple#storage-container::-webkit-scrollbar-thumb{
     background: var(--purple-container);
 }
-.pink#storage-container::-webkit-scrollbar-thumb{
+#storage-container.pink::-webkit-scrollbar-thumb{
+    background: var(--pink-big);
+}
+
+.white#world-container::-webkit-scrollbar-thumb{
+    background:  var(--default-container);
+}
+.red#world-container::-webkit-scrollbar-thumb{
+    background: var(--red-container);
+}
+.blue#world-container::-webkit-scrollbar-thumb{
+    background: var(--blue-container);
+}
+#world-container.green::-webkit-scrollbar-thumb{
+    background: var(--green-tag);
+}
+.yellow#world-container::-webkit-scrollbar-thumb{
+    background: var(--yellow-btn);
+}
+.purple#world-container::-webkit-scrollbar-thumb{
+    background: var(--purple-big);
+}
+.pink#world-container::-webkit-scrollbar-thumb{
+    background: var(--pink-big);
+}
+
+.white#world-container::-webkit-scrollbar-track{
+    background:  white;
+}
+.red#world-container::-webkit-scrollbar-track{
+    background: var(--red-tag);
+}
+.blue#world-container::-webkit-scrollbar-track{
+    background: var(--blue-tag);
+}
+.green#world-container::-webkit-scrollbar-track{
+    background: var(--green-container);
+}
+.yellow#world-container::-webkit-scrollbar-track{
+    background: var(--yellow-color);
+}
+.purple#world-container::-webkit-scrollbar-track{
+    background: var(--purple-container);
+}
+.pink#world-container::-webkit-scrollbar-track{
     background: var(--pink-container);
 }
+
 
 
 
@@ -2098,7 +2112,7 @@ ul li.checked::before{
     background: var(--blue-container-dark);
 }
 .list-container.green.dark-mode::-webkit-scrollbar-thumb{
-    background: var(--green-container-dark);
+    background: var(--green-tag-dark);
 }
 .list-container.yellow.dark-mode::-webkit-scrollbar-thumb{
     background: var(--yellow-container-dark);
@@ -2220,28 +2234,72 @@ ul li.checked::before{
 
 
 
-.white#storage-container::-webkit-scrollbar-thumb.dark-mode{
+.white#storage-container.dark-mode::-webkit-scrollbar-thumb{
     background:  var(--default-container-dark);
 }
-.red#storage-container::-webkit-scrollbar-thumb.dark-mode{
+.red#storage-container.dark-mode::-webkit-scrollbar-thumb{
     background: var(--red-container-dark);
 }
-.blue#storage-container::-webkit-scrollbar-thumb.dark-mode{
+.blue#storage-container.dark-mode::-webkit-scrollbar-thumb{
     background: var(--blue-container-dark);
 }
-.green#storage-container::-webkit-scrollbar-thumb.dark-mode{
+.green#storage-container.dark-mode::-webkit-scrollbar-thumb{
     background: var(--green-container-dark);
 }
-.yellow#storage-container::-webkit-scrollbar-thumb.dark-mode{
+.yellow#storage-container.dark-mode::-webkit-scrollbar-thumb{
     background: var(--yellow-container-dark);
 }
-.purple#storage-container::-webkit-scrollbar-thumb.dark-mode{
+.purple#storage-container.dark-mode::-webkit-scrollbar-thumb{
     background: var(--purple-container-dark);
 }
-.pink#storage-container::-webkit-scrollbar-thumb.dark-mode{
+.pink#storage-container.dark-mode::-webkit-scrollbar-thumb{
     background: var(--pink-container-dark);
 }
 
+
+.white#world-container.dark-mode::-webkit-scrollbar-thumb{
+    background:  var(--default-container-dark);
+}
+.red#world-container.dark-mode::-webkit-scrollbar-thumb{
+    background: dimgray;
+}
+.blue#world-container.dark-mode::-webkit-scrollbar-thumb{
+    background: var(--blue-box-dark);
+}
+.green#world-container.dark-mode::-webkit-scrollbar-thumb{
+    background: var(--green-box-dark);
+}
+.yellow#world-container.dark-mode::-webkit-scrollbar-thumb{
+    background: var(--yellow-big-dark);
+}
+.purple#world-container.dark-mode::-webkit-scrollbar-thumb{
+    background: var(--purple-color2-dark);
+}
+.pink#world-container.dark-mode::-webkit-scrollbar-thumb{
+    background: var(--pink-container-dark);
+}
+
+.white#world-container.dark-mode::-webkit-scrollbar-track{
+    background:  var(--default-color2-dark);
+}
+.red#world-container.dark-mode::-webkit-scrollbar-track{
+    background: transparent;
+}
+.blue#world-container.dark-mode::-webkit-scrollbar-track{
+    background: var(--blue-container-dark);
+}
+.green#world-container.dark-mode::-webkit-scrollbar-track{
+    background: var(--green-container-dark);
+}
+.yellow#world-container.dark-mode::-webkit-scrollbar-track{
+    background: transparent;
+}
+.purple#world-container.dark-mode::-webkit-scrollbar-track{
+    background: transparent;
+}
+.pink#world-container.dark-mode::-webkit-scrollbar-track{
+    background: transparent;
+}
 
 
 .white.storage-box.dark-mode{

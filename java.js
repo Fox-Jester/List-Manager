@@ -56,40 +56,6 @@ function addTask(id) {
 
 
 
-function nameBarFocus(id) {
-    
-    const nameBar = document.querySelector(`#name-bar${id}`)
-    const todoTop = nameBar.parentElement
-    nameBar.addEventListener("keydown", function(e){
-        if(e.key === "Enter") {
-            const span = document.createElement("span");
-            span.classList.add("entered-name")
-            span.setAttribute("id", `entered-name${id}`)
-            span.setAttribute("onclick", "reName(this.id)")
-            span.innerHTML = nameBar.value
-            todoTop.prepend(span)
-            nameBar.remove()
-            saveContainerData();
-        }
-    })
-}
-
-function reName(id) {
-    const num = extract(id);
-    const enteredName = document.querySelector(`#entered-name${num}`);
-    enteredName.outerHTML = `<input
-    type="text"
-    name=""
-    id="name-bar${num}"
-    class="name-bar"
-    placeholder="List name"
-    maxlength="25"
-    value='${enteredName.innerHTML}'
-    />`
-    nameBarEL(num);
-}
-
-
 
 function idRemover(idNum) {
     const index = idNumberArray.indexOf(idNum);
@@ -102,6 +68,21 @@ function boxIdRemover(idNum) {
     idBoxArray.splice(index, 1);
     saveBoxIds();
 }
+
+
+
+
+function namrBarEL(idNum) {
+    console.log(idNum)
+    const nameBar = document.querySelector(`#name-bar${idNum}`);
+    nameBar.addEventListener("keydown", function(e) {
+        saveName(idNum);
+        if (e.key === "Enter") {
+            nameBar.blur();
+        }
+    })
+}
+
 
 
 function todoTopEL(idNum) {
@@ -121,13 +102,6 @@ function todoTopEL(idNum) {
     
      
 }
-
-function nameBarEL(idNum) {
-    const nameBar = document.querySelector(`#name-bar${idNum}`);
-    nameBar.addEventListener("focus", nameBarFocus(idNum));
-}
-
-
 
 function listContainerEL(idNum) {
     
@@ -278,7 +252,7 @@ function dragDropEL(idNum) {
         listContainerEL(idNum);
         inputBarEL(idNum);
         todoTopEL(idNum);
-       
+        namrBarEL(idNum);
 
     }
 
@@ -286,12 +260,8 @@ function boxifyInfo(idNum){
     if (document.querySelector(`#list-container${idNum}`)) {
         const listContainer = document.querySelector(`#list-container${idNum}`);
         localStorage.setItem(`listData${idNum}`, listContainer.innerHTML);
+    };
 
-    }
-    if (document.querySelector(`#entered-name${idNum}`)) {
-        const enteredName = document.querySelector(`#entered-name${idNum}`);
-        localStorage.setItem(`nameData${idNum}`, enteredName.innerHTML);
-    }
     
 }
 
@@ -416,6 +386,9 @@ function reDark(answer) {
     if (answer === "yes") {
         darkMode();
     }
+    else {
+        darkSwitch()
+    } 
 };
 
 function darkSwitch(){
@@ -435,6 +408,7 @@ function darkSwitch(){
 
 
     if (worldContainer.classList.contains("dark-mode")) {
+        console.log("yo its dark af in here!")
         todoTops.forEach((e) => e.classList.add("dark-mode"));
         TodoBottoms.forEach((e) => e.classList.add("dark-mode"));
         addBtns.forEach((e) => e.classList.add("dark-mode"));
@@ -449,6 +423,7 @@ function darkSwitch(){
         worldContainer.classList.add("dark-mode");
     }
     else {
+        console.log("I SEE THE LIGHT!")
         todoTops.forEach((e) => e.classList.remove("dark-mode"));
         TodoBottoms.forEach((e) => e.classList.remove("dark-mode"));
         addBtns.forEach((e) => e.classList.remove("dark-mode"));
@@ -486,12 +461,12 @@ function createListTop(idNum) {
     const name = localStorage.getItem(`nameData${idNum}`)
     
     if (name === null) {
-        newTodoTop.innerHTML =`<span class="entered-name" id="entered-name${idNum}" onclick="reName(this.id)"></span>
+        newTodoTop.innerHTML =`<input type="text" maxlength="25" class="name-bar" id="name-bar${idNum}" placeholder="List name">
           <i class="fa-solid fa-x fa-border x-btn icon white"></i>`;
           return newTodoTop;
     }
     else {
-        newTodoTop.innerHTML =`<span class="entered-name" id="entered-name${idNum}" onclick="reName(this.id)">${name}</span>
+        newTodoTop.innerHTML =`<input type="text" maxlength="25" class="name-bar" id="name-bar${idNum}"  value="${name}" placeholder="List name">
               <i class="fa-solid fa-x fa-border x-btn icon white"></i>`;
               return newTodoTop;
     }
@@ -529,7 +504,7 @@ function createList() {
     
     if (container.childElementCount < 3){
         if (window.innerWidth > 1540 || container.childElementCount < 2){
-            if (window.innerWidth > 440 || container.childElementCount < 1){
+            if (window.innerWidth > 1010 || container.childElementCount < 1){
                 counter++
                 idNumberArray.push(counter);
         
@@ -558,7 +533,7 @@ function createList() {
     }
     
     elRecap(counter);
-    nameBarEL(counter)
+    
     
     saveIds();
     saveCounterData();
@@ -573,7 +548,7 @@ function createTodoTop(){
     newTodoTop.setAttribute("id", `todo-top${counter}`);
     
     
-    newTodoTop.innerHTML =`<input type="text" maxlength="25" name="" id="name-bar${counter}" 
+    newTodoTop.innerHTML =`<input type="text" maxlength="25" id="name-bar${counter}" 
     class="name-bar" placeholder="List name" />
           <i class="fa-solid fa-x fa-border x-btn icon white"></i>`;
 
@@ -607,7 +582,17 @@ function createTodoBottom() {
 
 
 
+function saveName(idNum) {
+    const nameBar = document.querySelector(`#name-bar${idNum}`);
+    localStorage.setItem(`nameData${idNum}`, nameBar.value);
+}
 
+function retrieveName(idNum) {
+    const nameBar = document.querySelector(`#name-bar${idNum}`);
+    if (localStorage.getItem(`nameData${idNum}`) !== null) {
+        nameBar.value = localStorage.getItem(`nameData${idNum}`);
+    }
+}
 
 
 function retrieveDark() {
@@ -685,18 +670,24 @@ function reapplyEventListeners() {
     for (num of idNumberArray) {
         dragDropEL(num);
     }
+    for (num of idNumberArray) {
+        namrBarEL(num);
+    }
+    for (num of idNumberArray) {
+        retrieveName(num)
+    }
+
     if (idBoxArray.length !== 0 ){
         for (num of idBoxArray) {
             dragDropBoxEL(num)
         }
+        
     };
-   
-
+    
 }
 
 applyDropEL()
 
-retrieveDark()
 
 retrieveBoxIds()
 
@@ -706,5 +697,5 @@ retrieveContainerData()
 
 reapplyEventListeners()
 
+retrieveDark()
 retrieveColor()
-
