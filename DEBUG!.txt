@@ -6,6 +6,7 @@
 
 
 
-
+tablet  site name font to high
+tablet screen gets cut off / perhaps shrirk it.
  }
 
