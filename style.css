@@ -368,6 +368,9 @@ body {
     overflow: hidden;
 }
 
+#world-container::-webkit-scrollbar-track {
+    margin-block: 5rem;
+}
 
 #world-container{
     background: linear-gradient(white 120%, lightgrey);
@@ -1149,7 +1152,7 @@ ul li.checked::before{
 @media screen and (max-width: 1010px) and (max-height: 720px) {
     #storage-group {
         height: 25rem;
-        margin-bottom: 3rem;
+        margin-bottom: 6rem;
     }
     #storage-container {
         grid-template-columns: repeat(2, 9rem);
