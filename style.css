@@ -493,7 +493,7 @@ body {
 
 @media screen and (max-width: 1010px) and (max-height: 720px) {
     #world-container {
-       
+        min-height: 380px;
         overflow-y: auto;
     }
     #site-name {
