@@ -493,8 +493,8 @@ body {
 
 @media screen and (max-width: 1010px) and (max-height: 720px) {
     #world-container {
-        
-        overflow-y: scroll;
+        max-height: 720px;
+        overflow-y: auto;
     }
     #site-name {
         padding: 1.5rem;
@@ -949,6 +949,10 @@ ul li.checked::before{
 @media screen and (max-width: 1010px) and (max-height: 720px)  {
     .list-container {
         max-height: 34rem;
+        
+    }
+    .todo-list {
+        margin-bottom: 5rem;
     }
 }
 
@@ -1145,6 +1149,7 @@ ul li.checked::before{
 @media screen and (max-width: 1010px) and (max-height: 720px) {
     #storage-group {
         height: 25rem;
+        margin-bottom: 3rem;
     }
     #storage-container {
         grid-template-columns: repeat(2, 9rem);
